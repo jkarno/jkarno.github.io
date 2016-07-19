@@ -21,7 +21,6 @@
 	</head>
 	<body class="landing">
 		<div id="page-wrapper">
-
 			<!-- Header -->
 				<header id="header" class="alt">
 					<h1><a href="index.html">Josh Karnofsky's</a> Website</h1>
@@ -32,18 +31,8 @@
 								<a href="#" class="icon fa-angle-down">Navigate</a>
 								<ul>
 									<li><a href="generic.html">Projects</a></li>
+									<li><a href="blog/index.html">Blog</a></li>
 									<li><a href="contact.html">Contact</a></li>
-									<li><a href="elements.html">Elements</a></li>
-									<li>
-										<a href="#">Blog Posts</a>
-										<ul>
-											<li><a href="#">Solving the iOS App Submission Problem</a></li>
-											<li><a href="#">What I learned developing an app without a UI - Part 1 (User Experience)</a></li>
-											<li><a href="#">What I learned developing an app without a UI - Part 2 (The Submission Process)</a></li>
-											<li><a href="#">Creating Music Reactive LED RGB Lights with Raspberry Pi and Python</a></li>
-											<li><a href="#">Building an Organized and Efficient Workflow</a></li>
-										</ul>
-									</li>
 								</ul>
 							</li>
 							<li><a href="files/JoshKarnofsky_Resume2016.pdf" class="button">Resume</a></li>
@@ -57,7 +46,7 @@
 					<p>Candidate for BSE in Computer Science at the University of Pennsylvania</p>
 					<ul class="actions">
 						<li><a href="files/JoshKarnofsky_Resume2016.pdf" class="button special">Resume</a></li>
-						<li><a href="#" class="button">About Me</a></li>
+						<li><a href="#main" class="button">About Me</a></li>
 					</ul>
 				</section>
 
@@ -72,6 +61,12 @@
 						</header>
 						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
 					</section>
+
+					<noscript>
+						<section class="box special">
+					    <center><h1><span class="icon fa-exclamation-circle"></span> <b>Please note that you do not have Javascript enabled, which is necessary to view the below projects' "Learn more" sections.</b></h1></center>
+				    </section>
+					</noscript>
 
 					<section class="box special features">
 						<div class="features-row">
@@ -189,6 +184,20 @@
 					  transition: 'all 0.3s'
 					});
 		    });
+		    $(function() {
+				  $('a[href*="#"]:not([href="#"])').click(function() {
+				    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+				      var target = $(this.hash);
+				      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+				      if (target.length) {
+				        $('html, body').animate({
+				          scrollTop: target.offset().top
+				        }, 1000);
+				        return false;
+				      }
+				    }
+				  });
+				});
 		  </script>
 	</body>
 </html>
