@@ -79,7 +79,7 @@
 								<span class="icon major fa-heartbeat accent2"></span>
 								<h3>InferMD</h3>
 								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.
-								<br /><a href="#">Learn More</a></p>
+								<br /><a class="button special small inferMD_popup_open" id="inferMD_popup_button">Learn More</a></p>
 							</section>
 							<section>
 								<span class="icon major fa-area-chart accent3"></span>
@@ -146,25 +146,15 @@
 
 				</section>
 
-			<!-- CTA -->
-<!-- 				<section id="cta">
-
-					<h2>Sign up for beta access</h2>
-					<p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc.</p>
-
-					<form>
-						<div class="row uniform 50%">
-							<div class="8u 12u(mobilep)">
-								<input type="email" name="email" id="email" placeholder="Email Address" />
-							</div>
-							<div class="4u 12u(mobilep)">
-								<input type="submit" value="Sign Up" class="fit" />
-							</div>
-						</div>
-					</form>
-
+			<!-- Project Popups -->
+			<div id="inferMD_popup" style="max-width: 40%">
+				<section class="box special">
+					<h2> InferMD </h2>
+					<img style="max-width: 50%" src="images/profile.jpg" alt="" />
 				</section>
- -->
+			</div>
+
+
 			<!-- Footer -->
 				<footer id="footer">
 					<ul class="icons">
@@ -172,7 +162,7 @@
 						<li><a href="https://www.linkedin.com/in/josh-karnofsky-85429394" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
 					</ul>
 					<ul class="copyright">
-						<li>&copy; Josh Karnofsky.</li>
+						<li>&copy; Josh Karnofsky</li>
 					</ul>
 				</footer>
 
@@ -186,6 +176,18 @@
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
+		  <!-- Include jQuery Popup Overlay -->
+		  <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
 
+  		<!-- Popup scripts -->
+			<script>
+		    $(document).ready(function() {
+		      // Initialize the plugin
+		      $('#inferMD_popup').popup({
+					  opacity: 0.5,
+					  transition: 'all 0.3s'
+					});
+		    });
+		  </script>
 	</body>
 </html>
