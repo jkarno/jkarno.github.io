@@ -26,7 +26,13 @@
 					<h1><a href="index.html">Josh Karnofsky's</a> Website</h1>
 					<nav id="nav">
 						<ul>
-							<li><a href="index.html">Home</a></li>
+							<li><a href="index.html">Home</a>
+								<ul>
+									<li><a class="icon fa-arrow-down smoothscroll" href="#aboutme">  About Me</a></li>
+									<li><a class="icon fa-arrow-down smoothscroll" href="#project_front">  Projects</a></li>
+									<li><a class="icon fa-arrow-down smoothscroll" href="#blog_front">  Blog</a></li>
+								</ul>
+							</li>
 							<li>
 								<a href="#" class="icon fa-angle-down">Navigate</a>
 								<ul>
@@ -46,12 +52,12 @@
 					<p>Candidate for BSE in Computer Science at the University of Pennsylvania</p>
 					<ul class="actions">
 						<li><a href="files/JoshKarnofsky_Resume2016.pdf" class="button special">Resume</a></li>
-						<li><a href="#main" class="button">About Me</a></li>
+						<li><a href="#aboutme" class="button smoothscroll">About Me</a></li>
 					</ul>
 				</section>
 
 			<!-- Main -->
-				<section id="main" class="container">
+				<section id="aboutme" class="container">
 
 					<section class="box special">
 						<header class="major">
@@ -68,7 +74,7 @@
 				    </section>
 					</noscript>
 
-					<section class="box special features">
+					<section id="project_front" class="box special features">
 						<div class="features-row">
 							<section>
 								<span class="icon major fa-heartbeat accent2"></span>
@@ -112,7 +118,7 @@
 							</section>
 					</section>
 
-					<div class="row">
+					<div id="blog_front" class="row">
 						<div class="6u 12u(narrower)">
 
 							<section class="box special">
@@ -185,13 +191,14 @@
 					});
 		    });
 		    $(function() {
-				  $('a[href*="#"]:not([href="#"])').click(function() {
+				  $('.smoothscroll').click(function() {
 				    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
 				      var target = $(this.hash);
 				      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+				      var offset = target.offset().top - 3.25*(parseFloat($("body").css("font-size")));
 				      if (target.length) {
 				        $('html, body').animate({
-				          scrollTop: target.offset().top
+				          scrollTop: offset
 				        }, 1000);
 				        return false;
 				      }
