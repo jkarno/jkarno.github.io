@@ -34,7 +34,7 @@
 								</ul>
 							</li>
 							<li>
-								<a href="#" class="icon fa-angle-down">Pages</a>
+								<a href="#">Pages <span class="icon fa-angle-down"/></a>
 								<ul>
 									<li><a href="generic.html">Projects</a></li>
 									<li><a href="blog/index.html">Blog</a></li>
@@ -62,7 +62,20 @@
 					<section id="aboutme" class="box special">
 						<header class="major">
 							<h2>About Me</h2>
-								<div class="-5u 2u"><span class="image fit"><img src="images/profile.jpg" alt="" /></span></div>
+							<br />
+							<div class="box alt">
+								<div class="row no-collapse 50%">
+									<div class="4u">
+										<!-- <br /><br /> -->
+										<h4><b>Full Name:</b><br />Josh Karnofsky</h4>
+										<!-- <br /><br /><br /> -->
+										<br />
+										<h4><b>Email:</b><br />Josh@JoshKarnofsky.com</h4>
+									</div>
+									<div class="4u"><span class="image fit"><img src="images/profile.png" alt="" /></span></div>
+									<div class="4u"><h4><b>Location:</b><br />Philadelphia, PA</h4>
+								</div>
+							</div>
 							<p>I am interested in all forms of creation. This most often manifests in my programming and music projects as well as my entrepreneurial interests. It has also led to me often exploring new things to learn from photo editing in Adobe Photoshop to making short films in Adobe Premiere Pro. I closely follow new technology and startups, and enjoy experimenting with new programming languages and frameworks.</p>
 						</header>
 						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
@@ -79,14 +92,14 @@
 							<section>
 								<span class="icon major fa-heartbeat accent2"></span>
 								<h3>InferMD</h3>
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.
+								<p>An iPhone application providing quick calculations to medical students or doctors based on supposed diagnoses and patient data.
 								<br /><br /><a class="button special small inferMD_popup_open" id="inferMD_popup_button">Learn More</a></p>
 							</section>
 							<section>
 								<span class="icon major fa-area-chart accent3"></span>
-								<h3>NBA Game Predictions Using Neural Nets</h3>
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.
-								<br /><a href="#">Learn More</a></p>
+								<h3>NBA Outcomes with Neural Nets</h3>
+								<p>As the final project for my Machine Learning course, I worked in a small team to develop a neural net model for predicting the outcomes of NBA games based on the results of previous games.
+								<br /><br /><a class="button special small NBA_popup_open" id="NBA_popup_button">Learn More</a></p>
 							</section>
 						</div>
 						<div class="features-row">
@@ -148,11 +161,39 @@
 				</section>
 
 			<!-- Project Popups -->
-			<div id="inferMD_popup" style="max-width: 500px">
-				<section class="box special">
-					<h2> InferMD </h2>
-					<img style="max-width: 50%" src="images/profile.jpg" alt="" />
-					<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+			<div id="inferMD_popup" style="max-width: 700px; max-height:90%; overflow: auto">
+				<section class="box special" style="margin: 0">
+					<header>
+						<h4> 
+							<img style="max-width: 50%" src="images/project_shots/infermd_logo.png" alt="" />
+	 					</h4>
+ 						<p><b>Technologies and Methodologies Used:</b> Swift, Agile Development, Trello, Slack</p>
+ 					</header>
+					<p>An iPhone application providing quick calculations to medical students or doctors based on supposed diagnoses and patient data. Initially intended as a submission to the Pennvention competition, this project quickly became much more. Working with three graduate students, one in business and two in medical school, I developed an MVP for their medical startup endeavor while they seeked funding, mentors, and beta users.</p>
+					<p>As a team, we worked using Agile development methodologies, with weekly syncs during which I would demonstrate progress to the application and they would provide feedback as well as updates on funding and market research. With my technological background, I was often able to suggest simplified and effective ways users could interact with the application.</p>
+					<p>Although still an MVP, I strongly considered scalability throughout the development process. This meant creating a dynamic UI that pulls and displays questions of different forms (boolean, multiple choice, integer, etc.) from a database that can easily be updated without making changes to the app itself.</p>
+ 					<div class="box alt">
+ 						<h4><b>Screenshots</b></h4>
+ 						<div class="row no-collapse 50% uniform" style="padding-left: 10%; padding-right: 10%">
+							<img style="max-width: 50%" src="images/project_shots/infermd_screen1.png" alt=""/>
+							<img style="max-width: 50%" src="images/project_shots/infermd_screen2.png" alt="" />
+						</div>
+					</div>
+				</section>
+			</div>
+
+			<div id="NBA_popup" style="max-width: 700px; max-height:90%; overflow: auto">
+				<section class="box special" style="margin: 0">
+					<header>
+						<h3>Learning NBA Outcomes with <br/>Neural Nets</h3>
+						<p/>
+ 						<p><b>Technologies Used:</b> Python (sklearn)</p>
+ 					</header>
+					<p>As the final project for my Machine Learning course, I worked in a small team to develop a neural net model for predicting the outcomes of NBA games based on the results of previous games. Ultimately, we succeeded in reaching an accuracy of 78 percent on our best run, which beat even the top experts at 76 percent.</p>
+
+					<p>In order to aggregate enough data to create an accurate model, we created a script that scraped data for 2000 games and parsed it into different categories. Ultimately, we provided the neural net with an input of the average statistics of the top five players from each team over their most recent games along with the outcome of that game. We worked to optimize every factor, including the number of hidden layers, the number of games we average, and which statistics we factored in.</p>
+
+ 					<h4><b><a href="files/CIS419_report.pdf">Link to Report</a></b></h4>
 				</section>
 			</div>
 
@@ -186,6 +227,10 @@
 		    $(document).ready(function() {
 		      // Initialize the plugin
 		      $('#inferMD_popup').popup({
+					  opacity: 0.5,
+					  transition: 'all 0.3s'
+					});
+					$('#NBA_popup').popup({
 					  opacity: 0.5,
 					  transition: 'all 0.3s'
 					});
