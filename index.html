@@ -106,8 +106,8 @@
 							<section>
 								<span class="icon major fa-camera accent4"></span>
 								<h3>SpyCam</h3>
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.
-								<br /><a href="#">Learn More</a></p>
+								<p>As a fun “spy” tool for kids, this iPhone application allows users to access photo and video options while under the guise of looking at applications.
+								<br /><br /><a class="button special small spycam_popup_open" id="spycam_popup_button">Learn More</a></p>
 							</section>
 							<section>
 								<span class="icon major fa-group accent5"></span>
@@ -161,7 +161,7 @@
 				</section>
 
 			<!-- Project Popups -->
-			<div id="inferMD_popup" style="max-width: 700px; max-height:90%; overflow: auto">
+			<div id="inferMD_popup" style="margin-left: 10%; margin-right: 10%; max-height:90%; overflow: auto">
 				<section class="box special" style="margin: 0">
 					<header>
 						<h4> 
@@ -182,7 +182,7 @@
 				</section>
 			</div>
 
-			<div id="NBA_popup" style="max-width: 700px; max-height:90%; overflow: auto">
+			<div id="NBA_popup" style="margin-left: 10%; margin-right: 10%; max-height:90%; overflow: auto">
 				<section class="box special" style="margin: 0">
 					<header>
 						<h3>Learning NBA Outcomes with <br/>Neural Nets</h3>
@@ -194,6 +194,27 @@
 					<p>In order to aggregate enough data to create an accurate model, we created a script that scraped data for 2000 games and parsed it into different categories. Ultimately, we provided the neural net with an input of the average statistics of the top five players from each team over their most recent games along with the outcome of that game. We worked to optimize every factor, including the number of hidden layers, the number of games we average, and which statistics we factored in.</p>
 
  					<h4><b><a href="files/CIS419_report.pdf">Link to Report</a></b></h4>
+				</section>
+			</div>
+
+			<div id="spycam_popup" style="margin-left: 15%; margin-right: 15%; max-height:90%; overflow: auto">
+				<section class="box special" style="margin: 0">
+					<header>
+						<h3><img style="max-width: 50%" src="images/project_shots/spycam_logo.png" alt="" /></h3>
+						<h3>SpyCam</h3>
+						<p/>
+ 						<p><b>Technologies Used:</b> Objective-C, CocoaPods</p>
+ 					</header>
+					<p>As a fun “spy” tool for kids, this iPhone application allows users to access photo and video options while under the guise of looking at applications. This is done by allowing the user to import screenshots of other applications and flip through them, with specific gestures initiating the camera.</p>
+					<p>As the application could not provide any visual cues that would give away its usage, this application opened up an interesting challenge of a gesture based user experience. Ultimately, I spent a large portion of development fine tuning this process so that every gesture was explained and intuitive.</p>
+					<div class="box alt">
+ 						<h4><b>Screenshots</b></h4>
+ 						<div class="row no-collapse 50% uniform" style="padding-left: 10%; padding-right: 10%">
+							<img style="max-width: 33%" src="images/project_shots/spycam_screen1.png" alt=""/>
+							<img style="max-width: 33%" src="images/project_shots/spycam_screen2.png" alt="" />
+							<img style="max-width: 33%" src="images/project_shots/spycam_screen3.png" alt=""/>
+						</div>
+					</div>
 				</section>
 			</div>
 
@@ -231,6 +252,10 @@
 					  transition: 'all 0.3s'
 					});
 					$('#NBA_popup').popup({
+					  opacity: 0.5,
+					  transition: 'all 0.3s'
+					});
+					$('#spycam_popup').popup({
 					  opacity: 0.5,
 					  transition: 'all 0.3s'
 					});
