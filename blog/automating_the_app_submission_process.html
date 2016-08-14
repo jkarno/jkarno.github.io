@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Josh Karnofsky</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+    <!-- Analytics Script -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-80901977-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <!-- Header -->
+        <header id="header">
+          <h1><a href="index.html">Josh Karnofsky's</a> Website</h1>
+          <nav id="nav">
+            <ul>
+              <li><a href="../index.html">Home</a>
+              </li>
+              <li>
+                <a href="#">Pages <span class="icon fa-angle-down"/></a>
+                <ul>
+                  <li><a href="../projects.html">Projects</a></li>
+                  <li><a href="../blog/index.html">Blog</a></li>
+                  <li><a href="../contact.html">Contact</a></li>
+                </ul>
+              </li>
+              <li><a href="../files/JoshKarnofsky_Resume2016.pdf" class="button">Resume</a></li>
+            </ul>
+          </nav>
+        </header>
+
+      <!-- Main -->
+        <section id="main" class="container">
+          <header>
+            <h2>Solving the App Submission Problem</h2>
+            <p>A post about how I automated the app submission process during my 2014 internship</p>
+          </header>
+          <div class="box">
+            <span class="image featured"><img src="../images/blog_shots/dev_submission.jpg" alt="" /></span>
+            <h3>Preface</h3>
+            <p>This was written at the conclusion of my 2014 summer internship at <a href="http://www.evertrue.com">EverTrue</a>. Much has changed since this was written; specifically, <a href="https://fastlane.tools">FastLane</a> was released which greatly enhances the submission workflow. Interestingly, Krause's approaches greatly mirrored my own, initially using a web scraper to move through Apple's developer center's pages. This summer (2016), I again was assigned the task of improving the submission process, this time at <a href="https://www.mathworks.com">MathWorks</a>. I ended up using Fastlane as I worked to create an automated build and submission process and found that these tools have made the process much simpler to automate. Therefore, it is clear that much has changed since I initially worked on my solution to this problem, yet there is still a lot to learn in the process I undertook and the methods used.
+            <h3>The Problem</h3>
+            <p>On my first day at EverTrue in May, I was shown the application submission process that the company goes through each time they roll out a new version of its iPhone application. That same day, I got to work submitting the EverTrue application on my own and quickly discovered how tedious the process was. EverTrue faced a unique problem due to the nature of the product. We work with many schools who choose to have an individual customized version of the EverTrue app, and for each school we had to go through the process Apple developers know well: generating certificates, generating provisioning profiles corresponding to those certificates, downloading them, selecting them from the large list within Xcode, and then testing, validating, and distributing the application. Multiply the process ad infinitum and that’s where we were. There had to be something better. My summer working with the development team at EverTrue is now coming to an end, as is my project that set out to solve this problem. The process,has been an incredible learning experience, thanks to the help and guidance of EverTrue’s amazing development team.</p>
+            <h3>Searching For a Solution</h3>
+            <p>I began by researching what solutions already existed for this problem. Mattt Thompson had created a command line solution for some of the tasks involving the developer center, but they were not quite what we wanted and did not include the generation process. It didn’t look like a complete solution existed, and Apple had no API to work directly with the dev center, so I decided I would have to build a solution from scratch.</p>
+            <p>After a few days of research, I had an idea. If we couldn’t directly communicate with the dev center, what if I created an automated crawler to do the job of walking through the pages for us? I tried out a Ruby library called “Mechanize” that used the Nokogiri library to parse HTML and allowed me to programmatically click on links on a webpage. However, the testing was slow since there was no way to view what Mechanize was doing, and at one point, after discovering the reason for hours of failed tests, I found that I had hit a brick wall. Mechanize did not support Javascript, which a large amount of Apple’s Developer Center was based on. I could not get past the login page.</p>
+            <p>I scrapped everything involving Mechanize, and started the process again with a new tool - the Capybara library. Interestingly, this tool was designed for automating web testing and thus there was little online support for the process I was going through. I eventually got it set up to properly run through a Firefox window using the Selenium-Webdriver. After creating a Ruby gem for the project, I got to scripting.</p>
+            <h3>Scripting the et_devcenter Gem</h3>
+            <p>Using Commander, I quickly made my et_devcenter gem accessible from anywhere in the terminal. I started by creating methods that could be called as commands (e.g. ‘et_devcenter print_certs’, ‘et_devcenter revoke_certs’, etc.). I quickly learned that the most efficient way to make these scripts was by using Capybara’s method of finding xpaths.</p>
+            <p>Using Google Chrome, I would right click an item on the Apple Developer’s Center that I wanted to find in my script, and select ‘Copy XPath.’ I would then go into my script and add a line that said `page.find(:xpath, ‘xpath_placeholder’).click` with the given xpath. The process was slow, but it was working. After a couple weeks I had a long list of commands that my script could run, including:
+
+            <ul>
+              <li>Logging in</li>
+              <li>Printing the current user</li>
+              <li>Printing the certificates</li>
+              <li>Printing provisioning profiles</li>
+              <li>Downloading certificates</li>
+              <li>Downloading provisioning profiles</li>
+              <li>Revoking Certificates</li>
+              <li>Deleting provisioning profiles</li>
+              <li>Viewing profile expiration dates</li>
+              <li>Printing device UUIDs</li>
+              <li>Printing a list of registered devices</li>
+              <li>Registering a device</li>
+              <li>Generating profiles and certificates</li>
+            </ul>
+            <p>Obviously, the generation of profiles and certificates was the biggest breakthrough. By passing in the path to a certificate signing request file in the terminal, the script could now generate everything that we wanted. It could determine the correct certificates to revoke if the limit is hit by keeping track of which ones it had previously generated. It would then determine the the correct App ID during profile generation and select the newly generated certificate to correspond with it. Furthermore, the script stored the UUID of the provisioning profiles that it downloaded by opening them into Xcode and then reading the most recently created file in the “~/Library/MobileDevices/Provisioning Profiles” folder. It read the certificate names using the openssl library in Ruby and stored them as well. David Ohayon of the development team had created a cloning script to make the Xcode project with assets and information for the specific schools. With some modifications, the two scripts worked together to replace the placeholders for the provisioning profiles and certificates with the corresponding stored values, removing the need to manually select these in Xcode.</p>
+            <p>This was all great, except… now instead of going through the steps to create these provisioning profiles and certificates by hand, the script still required  the user to be proficient with the terminal and knew exactly what the certificate file path was. This wasn’t good enough.</p>
+
+            <h3>Making the script an application</h3>
+
+            <p>It was around this time that Apple announced Swift, their new programming language. I wanted to try it out, and the current situation seemed like a great time. I decided that I would make a Mac application to run my Ruby script.</p>
+            <p>It turned out that this was a challenge in its own. I had checked out MacRuby, a piece of software that allows you to run Ruby code in Xcode to create an application, but this wasn’t what I wanted. I wanted to use the control that Swift gave me and run the Ruby script natively. Eventually, I settled on using Apple’s NSTask for this. I essentially laid out an application with buttons for everything that my script could do, and hooked each one up to an NSTask that would run the et_devcenter script with the corresponding arguments. The user could enter their username and password to the Developer’s Center within the application and open a dialog window to select their certificate file. It saved the accounts in Apple’s keychain, offered a dropdown list of all the ones that had been entered previously, and autofilled the password. It even connected to the cloning script, determining which school to clone by intelligently parsing the email address entered. I was ready to create an installation package for the developer team to install and test.</p>
+            <p>I began some research on how to create an installation package on the Mac. It should’ve been easy, but I discovered that NSTask requires a specific install location for the Ruby script, and there is no way to determine what Ruby environment the user is in. Working with some members of the team, we spent days trying to create an installation process, but eventually determined that there were too many variables on the end user’s machine, and there was no viable solution.</p>
+
+            <h3>The Final Steps</h3>
+
+            <p>Thus, we started discussing some other potential solutions. We finally settled on entirely scrapping the new native application. Instead we would host the entire process on a Mac Mini, running the script through a Ruby on Rails website that ran a Redis worker each time that a “Generate” button was clicked. Thanks to the Ruby expertise of team member Bob Breznak, we had a working website that ran anything in the Redis worker script within a few hours.</p>
+            <p>I got to work moving my certificate and profile generation script into the new project, as well as the modified version of the cloning script. Next, I implemented Apple’s command line tool xcodebuild to create an xcarchive of the Xcode project. I then compressed the xcarchive file using rubyzip to reduce the archive size and create a single zip file. Lastly, I used the Ruby library for the Amazon Web Services SDK to connect to an S3 bucket and upload the archive zip.</p>
+            <p>Finally, after a long and often bumpy ride, the application was complete. We could now officially generate the EverTrue app remotely for any school, fill in the certificates and profiles, archive the project, and have a zip file ready for submission uploaded to an S3 bucket in ten minutes with just the click of a button. I learned about numerous technologies this summer on my hunt for the solution, some of which I never knew existed. And I learned more than I could have imagined about overcoming the practical challenges of software development.</p>
+            </div>
+          </div>
+        </section>
+
+      <!-- Footer -->
+        <footer id="footer">
+          <ul class="icons">
+            <li><a href="https://github.com/jkarno" class="icon fa-github"><span class="label">Github</span></a></li>
+            <li><a href="https://www.linkedin.com/in/josh-karnofsky-85429394" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+          </ul>
+          <ul class="copyright">
+            <li>&copy; Josh Karnofsky</li>
+          </ul>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+      <script src="../assets/js/jquery.min.js"></script>
+      <script src="../assets/js/jquery.dropotron.min.js"></script>
+      <script src="../assets/js/jquery.scrollgress.min.js"></script>
+      <script src="../assets/js/skel.min.js"></script>
+      <script src="../assets/js/util.js"></script>
+      <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+      <script src="../assets/js/main.js"></script>
+
+  </body>
+</html>
