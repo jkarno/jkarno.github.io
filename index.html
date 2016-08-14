@@ -112,22 +112,22 @@
 							<section>
 								<span class="icon major fa-group accent5"></span>
 								<h3>Flock</h3>
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.
-								<br /><a href="#">Learn More</a></p>
+								<p>A NodeJS web application that provides users with the ability to find other members interested in going to the same event.
+								<br /><br /><a class="button special small flock_popup_open" id="flock_popup_button">Learn More</a></p>
 							</section>
 						</div>
 						<div class="features-row">
 							<section>
 								<span class="icon major fa-lightbulb-o accent2"></span>
 								<h3>Sound Reactive LED Light Display</h3>
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.
-								<br /><a href="#">Learn More</a></p>
+								<p>An RGB LED light system using a Raspberry Pi and Python that reacts in real-time to any audio streamed through a connected stereo receiver.
+								<br /><br /><a class="button special small lights_popup_open" id="lights_popup_button">Learn More</a></p>
 							</section>
 							<section>
 								<span class="icon major fa-android accent3"></span>
-								<h3>Android App for Restaurant</h3>
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.
-								<br /><a href="#">Learn More</a></p>
+								<h3>Tandem Bagels</h3>
+								<p>An interactive Android application for the Tandem Bagel Company's restaurant.
+								<br /><br /><a class="button special small tandem_popup_open" id="tandem_popup_button">Learn More</a></p>
 							</section>
 					</section>
 
@@ -174,7 +174,7 @@
 					<p>Although still an MVP, I strongly considered scalability throughout the development process. This meant creating a dynamic UI that pulls and displays questions of different forms (boolean, multiple choice, integer, etc.) from a database that can easily be updated without making changes to the app itself.</p>
  					<div class="box alt">
  						<h4><b>Screenshots</b></h4>
- 						<div class="row no-collapse 50% uniform" style="padding-left: 10%; padding-right: 10%">
+ 						<div class="row no-collapse 50% uniform" style="padding-left: 25%; padding-right: 25%">
 							<img style="max-width: 50%" src="images/project_shots/infermd_screen1.png" alt=""/>
 							<img style="max-width: 50%" src="images/project_shots/infermd_screen2.png" alt="" />
 						</div>
@@ -202,7 +202,7 @@
 					<header>
 						<h3><img style="max-width: 50%" src="images/project_shots/spycam_logo.png" alt="" /></h3>
 						<h3>SpyCam</h3>
-						<p/>
+						<p></p>
  						<p><b>Technologies Used:</b> Objective-C, CocoaPods</p>
  					</header>
 					<p>As a fun “spy” tool for kids, this iPhone application allows users to access photo and video options while under the guise of looking at applications. This is done by allowing the user to import screenshots of other applications and flip through them, with specific gestures initiating the camera.</p>
@@ -213,6 +213,53 @@
 							<img style="max-width: 33%" src="images/project_shots/spycam_screen1.png" alt=""/>
 							<img style="max-width: 33%" src="images/project_shots/spycam_screen2.png" alt="" />
 							<img style="max-width: 33%" src="images/project_shots/spycam_screen3.png" alt=""/>
+						</div>
+					</div>
+				</section>
+			</div>
+
+			<div id="flock_popup" style="margin-left: 10%; margin-right: 10%; max-height:90%; overflow: auto">
+				<section class="box special" style="margin: 0">
+					<header>
+						<h3><img style="max-width: 30%" src="images/project_shots/flock_logo.png" alt="" /></h3>
+						<p></p>
+ 						<p><b>Technologies Used:</b> Javascript (Node & Express), HTML, CSS, MongoDB</p>
+ 					</header>
+					<p>Developed as a PennApps hackathon project and used as an opportunity to experiment with nodejs development, this web application provides users the ability find other members interested in going to the same event. By creating a “flock,” users can group together in order to carpool and bond over a similar interest.</p>
+					<p>Developing this application involved creating a registration process in which accounts could be created with a username and password or authenticated through Facebook. Accounts are stored to a MongoDB database, with passwords encrypted for security.</p>
+				</section>
+			</div>
+
+			<div id="lights_popup" style="margin-left: 10%; margin-right: 10%; max-height:90%; overflow: auto">
+				<section class="box special" style="margin: 0">
+					<header>
+						<h3>Sound Reactive LED Light Display</h3>
+						<p></p>
+ 						<p><b>Technologies Used:</b> Raspberry Pi wired to LED lights, Python (pigpio, pyaudio, numpy, cherrypy)</p>
+ 					</header>
+					<p>An RGB LED light system that reacts in real-time to any audio streamed through a connected stereo receiver. The Python script was developed scratch, as no other solutions provided a similar effect to my desired quality level. Over several weeks, the script was continuously tweaked until it offered a multitude of reactive options and perfectly smooth transitions of the colors and brightness.</p>
+					<p>Further, in order to access and control the lights at any time, from anywhere, I developed a python server and website using cherrypy. With the server running, I can access the light controls directly from my phone or computer.</p>
+					<p>Hardware Setup: The audio source is passed into an Onkyo receiver which outputs a signal to both speakers and to a monitor out port on the receiver. An RCA to aux cable takes that signal and then a stereo to mono jack converts the signal for processing. Next, the signal runs into a USB soundcard which is hooked up to and configured for the Raspberry Pi. The Raspberry Pi analyzes this signal using PyAudio and Audioop to detect rms values. This rms value is passed to several functions which determine what the current brightness and color of the lights should be. Next, the script uses pigpio to send a signal for each of the pins on the GPIO board on the Raspberry Pi. Jumper wires are connected from these pins to a breadboard which is also hooked up to a power supply and the RGB LED lights. The result is a real-time processing of any audio through the receiver and conversion into both the brightness and color of the lights in the room, dependent on relative amplitudes of the music.</p>
+
+ 					<h4><b><a href="https://github.com/jkarno/RGB-Music-Lights">Link to Source Code</a></b></h4>
+				</section>
+			</div>
+
+			<div id="tandem_popup" style="margin-left: 15%; margin-right: 15%; max-height:90%; overflow: auto">
+				<section class="box special" style="margin: 0">
+					<header>
+						<h3><img style="max-width: 50%" src="images/project_shots/tandem_logo.png" alt="" /></h3>
+						<h3>Tandem Bagels Android App</h3>
+						<p></p>
+ 						<p><b>Technologies and Methodologies Used:</b> Java (Android), Firebase, Jira, Agile Development</p>
+ 					</header>
+					<p>An interactive Android application for the Tandem Bagel Company. Using agile development methodologies and through direct communication with the company, this application provides access to the restaurant’s menu, directions, and rewards/ordering system.</p>
+					<p>Working with a team, we created this application in order to allow customers to earn more by being customers of Tandem Bagel Co. Using Firebase for our database and authentication, we developed an account creation system for the app. Once registered, users are able to create orders directly from the application, and receive rewards for their purchases. We also created an administration system, through which the restaurant owners can edit the menu, reward options, other admins, and the daily “tip war” poll.</p>
+					<div class="box alt">
+ 						<h4><b>Screenshots</b></h4>
+ 						<div class="row no-collapse 50% uniform" style="padding-left: 25%; padding-right: 25%">
+							<img style="max-width: 50%" src="images/project_shots/tandem_screen1.jpg" alt=""/>
+							<img style="max-width: 50%" src="images/project_shots/tandem_screen2.jpg" alt="" />
 						</div>
 					</div>
 				</section>
@@ -259,7 +306,19 @@
 					  opacity: 0.5,
 					  transition: 'all 0.3s'
 					});
+					$('#flock_popup').popup({
+					  opacity: 0.5,
+					  transition: 'all 0.3s'
+					});
 		    });
+				$('#lights_popup').popup({
+					  opacity: 0.5,
+					  transition: 'all 0.3s'
+					});
+				$('#tandem_popup').popup({
+					  opacity: 0.5,
+					  transition: 'all 0.3s'
+					});
 		    $(function() {
 				  $('.smoothscroll').click(function() {
 				    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
