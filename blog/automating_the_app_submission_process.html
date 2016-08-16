@@ -23,16 +23,15 @@
     <div id="page-wrapper">
       <!-- Header -->
         <header id="header">
-          <h1><a href="index.html">Josh Karnofsky's</a> Website</h1>
+          <h1><a href="../index.html">Josh Karnofsky's</a> Website</h1>
           <nav id="nav">
             <ul>
-              <li><a href="../index.html">Home</a>
-              </li>
+              <li><a href="../index.html">Home</a></li>
               <li>
                 <a href="#">Pages <span class="icon fa-angle-down"/></a>
                 <ul>
                   <li><a href="../projects.html">Projects</a></li>
-                  <li><a href="../blog/index.html">Blog</a></li>
+                  <li><a href="index.html">Blog</a></li>
                   <li><a href="../contact.html">Contact</a></li>
                 </ul>
               </li>
@@ -49,10 +48,10 @@
           </header>
           <div class="box">
             <span class="image featured"><img src="../images/blog_shots/dev_submission.jpg" alt="" /></span>
-            <h3>Preface</h3>
-            <p>This was written at the conclusion of my 2014 summer internship at <a href="http://www.evertrue.com">EverTrue</a>. Much has changed since this was written; specifically, <a href="https://fastlane.tools">FastLane</a> was released which greatly enhances the submission workflow. Interestingly, Krause's approaches greatly mirrored my own, initially using a web scraper to move through Apple's developer center's pages. This summer (2016), I again was assigned the task of improving the submission process, this time at <a href="https://www.mathworks.com">MathWorks</a>. I ended up using Fastlane as I worked to create an automated build and submission process and found that these tools have made the process much simpler to automate. Therefore, it is clear that much has changed since I initially worked on my solution to this problem, yet there is still a lot to learn in the process I undertook and the methods used.
-            <h3>The Problem</h3>
-            <p>On my first day at EverTrue in May, I was shown the application submission process that the company goes through each time they roll out a new version of its iPhone application. That same day, I got to work submitting the EverTrue application on my own and quickly discovered how tedious the process was. EverTrue faced a unique problem due to the nature of the product. We work with many schools who choose to have an individual customized version of the EverTrue app, and for each school we had to go through the process Apple developers know well: generating certificates, generating provisioning profiles corresponding to those certificates, downloading them, selecting them from the large list within Xcode, and then testing, validating, and distributing the application. Multiply the process ad infinitum and that’s where we were. There had to be something better. My summer working with the development team at EverTrue is now coming to an end, as is my project that set out to solve this problem. The process,has been an incredible learning experience, thanks to the help and guidance of EverTrue’s amazing development team.</p>
+            <h3>Preface (August 2016)</h3>
+            <p>This was written at the conclusion of my 2014 summer internship at <a href="http://www.evertrue.com">EverTrue</a>. Much has changed since this was written; specifically, <a href="https://fastlane.tools">FastLane</a> was released which greatly enhances the submission workflow. Interestingly, Krause's approaches greatly mirrored my own, initially using a web scraper to move through Apple's developer center's pages. This summer (2016), I again was assigned the task of improving the submission process, this time at <a href="https://www.mathworks.com">MathWorks</a>. I ended up using Fastlane as I worked to create an automated build and submission process and found that these tools have made the process much simpler to automate. Therefore, it is clear that much has changed since I initially worked on my solution to this problem, yet there is still a lot to learn from the process I undertook and the methods used.
+            <h3>The Problem (Summer 2014)</h3>
+            <p>On my first day at EverTrue in May, I was shown the application submission process that the company goes through each time they roll out a new version of its iPhone application. That same day, I got to work submitting the EverTrue application on my own and quickly discovered how tedious the process was. EverTrue faced a unique problem due to the nature of the product. We work with many schools who choose to have an individual customized version of the EverTrue app, and for each school we had to go through the process Apple developers know well: generating certificates, generating provisioning profiles corresponding to those certificates, downloading them, selecting them from the large list within Xcode, and then testing, validating, and distributing the application. Multiply the process ad infinitum and that’s where we were. There had to be something better. My summer working with the development team at EverTrue is now coming to an end, as is my project that set out to solve this problem. The process has been an incredible learning experience, thanks to the help and guidance of EverTrue’s amazing development team.</p>
             <h3>Searching For a Solution</h3>
             <p>I began by researching what solutions already existed for this problem. Mattt Thompson had created a command line solution for some of the tasks involving the developer center, but they were not quite what we wanted and did not include the generation process. It didn’t look like a complete solution existed, and Apple had no API to work directly with the dev center, so I decided I would have to build a solution from scratch.</p>
             <p>After a few days of research, I had an idea. If we couldn’t directly communicate with the dev center, what if I created an automated crawler to do the job of walking through the pages for us? I tried out a Ruby library called “Mechanize” that used the Nokogiri library to parse HTML and allowed me to programmatically click on links on a webpage. However, the testing was slow since there was no way to view what Mechanize was doing, and at one point, after discovering the reason for hours of failed tests, I found that I had hit a brick wall. Mechanize did not support Javascript, which a large amount of Apple’s Developer Center was based on. I could not get past the login page.</p>
